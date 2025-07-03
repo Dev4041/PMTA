@@ -44,16 +44,19 @@
   <textarea id="inputData" rows="10" placeholder="170.130.79.98|epochs-of-fashion.com\n170.130.79.99|donnahatch.com"></textarea>
 
   <label for="vmtaName">VMTA Name:</label>
-  <input type="text" id="vmtaName" value="hotcone1">
+  <input type="text" id="vmtaName" value="">
 
   <label for="keyName">Key Name:</label>
-  <input type="text" id="keyName" value="key1">
+  <input type="text" id="keyName" value="">
 
   <label for="domainKey">Domain Key Base:</label>
-  <input type="text" id="domainKey" value="cleanupearth.com">
+  <input type="text" id="domainKey" value="">
 
   <label for="keyPath">Key Path Base:</label>
-  <input type="text" id="keyPath" value="/var/pmtadomain-keys">
+  <select id="keyPath">
+    <option value="/var/pmtadomain-keys">/var/pmtadomain-keys</option>
+    <option value="/etc/pmta/domain-keys/">/etc/pmta/domain-keys/</option>
+  </select>
 
   <button onclick="generateMTA()">Generate MTA Blocks</button>
 
