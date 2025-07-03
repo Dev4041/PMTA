@@ -1,4 +1,4 @@
-/* Reset some default browser styles */
+/* Reset default box model */
 * {
   margin: 0;
   padding: 0;
@@ -6,66 +6,109 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #eef1f7;
+  color: #2c3e50;
   padding: 2rem;
   line-height: 1.6;
 }
 
 h1 {
-  margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
   font-size: 2rem;
-  color: #2c3e50;
+  color: #1f2937;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Panels */
+.form-section,
+.output-section {
+  flex: 1;
+  min-width: 320px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.form-section:hover,
+.output-section:hover {
+  transform: translateY(-2px);
+}
+
+/* Labels & inputs */
 label {
   display: block;
-  margin-top: 1.5rem;
-  font-weight: bold;
+  margin-top: 1.2rem;
+  font-weight: 600;
+  color: #374151;
 }
 
-textarea,
 input,
-select,
-button {
+textarea,
+select {
   width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
+  padding: 0.8rem;
+  margin-top: 0.4rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.3s ease;
+  background-color: #f9fafb;
 }
 
-textarea:focus,
 input:focus,
+textarea:focus,
 select:focus {
+  border-color: #3b82f6;
   outline: none;
-  border-color: #4CAF50;
 }
 
+/* Button */
 button {
-  background-color: #4CAF50;
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(to right, #4f46e5, #3b82f6);
   color: white;
   border: none;
-  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
 }
 
+/* Output */
 pre#output {
-  background: #fff;
+  background: #f9fafb;
   padding: 1rem;
-  border: 1px solid #ddd;
+  margin-top: 1.5rem;
+  border: 1px solid #d1d5db;
   border-radius: 0.5rem;
-  margin-top: 2rem;
   white-space: pre-wrap;
-  word-break: break-word;
-  font-family: monospace;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #111827;
+  min-height: 400px;
+  overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 }
