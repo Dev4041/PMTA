@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual MTA Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f0f2f5;
+    }
+    textarea, input, button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    pre {
+      background: #fff;
+      padding: 1rem;
+      white-space: pre-wrap;
+      border-radius: 0.5rem;
+      border: 1px solid #ddd;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Virtual MTA Generator</h1>
+
+  <label for="inputData">Enter IP|Domain pairs (one per line):</label>
+  <textarea id="inputData" rows="10" placeholder="170.130.79.98|epochs-of-fashion.com\n170.130.79.99|donnahatch.com"></textarea>
+
+  <label for="vmtaName">VMTA Name:</label>
+  <input type="text" id="vmtaName" value="hotcone1">
+
+  <label for="keyName">Key Name:</label>
+  <input type="text" id="keyName" value="key1">
+
+  <label for="domainKey">Domain Key Base:</label>
+  <input type="text" id="domainKey" value="cleanupearth.com">
+
+  <label for="keyPath">Key Path Base:</label>
+  <input type="text" id="keyPath" value="/var/pmtadomain-keys">
+
+  <button onclick="generateMTA()">Generate MTA Blocks</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function generateMTA() {
+      const inputData = document.getElementById('inputData').value.trim().split('\n');
+      const vmtaName = document.getElementById('vmtaName').value.trim();
+      const keyName = document.getElementById('keyName').value.trim();
+      const domainKey = document.getElementById('domainKey').value.trim();
+      const keyPath = document.getElementById('keyPath').value.trim();
+
+      const result = inputData.map(line => {
+        const [ip, host] = line.split('|');
+        return `<virtual-mta ${vmtaName}_${ip}>\nsmtp-source-host ${ip} ${host}\ndomain-key ${keyName},${domainKey},${keyPath}/${keyName}.${domainKey}.pem\n</virtual-mta>`;
+      }).join('\n\n');
+
+      document.getElementById('output').textContent = result;
+    }
+  </script>
+</body>
+</html>
