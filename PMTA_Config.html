@@ -101,7 +101,7 @@
       const result = inputData.map(line => {
         const [ip, host] = line.split('|');
         return `<virtual-mta ${vmtaName}_${ip}>\nsmtp-source-host ${ip} ${host}\ndomain-key ${keyName},${domainKey},${keyPath}/${keyName}.${domainKey}.pem\n</virtual-mta>`;
-      }).join('\n\n');
+      }).join('\n');
 
       document.getElementById('output').textContent = result;
     }
